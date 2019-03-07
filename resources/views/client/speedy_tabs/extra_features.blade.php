@@ -219,6 +219,8 @@
         color: #5e8c31;
     }
 </style>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
 <script type="text/javascript">
     function payLater(){
         $("input[name='pay_now']").val(0);
@@ -237,4 +239,56 @@
             }
         });
     }
+
+
+    $( "input" ).on( "click", function() {
+      var payment_mehtod = $( "input:checked" ).val()
+        if(payment_mehtod == 'stripe'){
+        
+            $(".strip_data").show();
+
+            $("span.payment_stripe").html('Pay');
+            
+            Stripe.setPublishableKey('pk_test_fu9pPdhwW3qilZxpvQ1UjF24');
+
+            var $form = $("#main_order_form");
+
+                console.log($form);
+            $form.submit(function(event) {
+           
+              $('#charge-error').addClass('hidden');
+              $form.find('button').prop('disabled', true);
+
+              Stripe.card.createToken({
+                number: $('input[name="number"]').val(),
+                cvc: $('input[name="cvc"]').val(),
+                exp_month: $('input[name="exp_month"]').val(),
+                exp_year: $('input[name="exp_year"]').val(),
+                name: $('input[name="client_name"]').val()
+              }, stripeResponseHandler);
+              return false;
+            });
+
+            function stripeResponseHandler(status, response){
+              console.log(response.error);
+              if(response.error){
+                $('#charge-error').removeClass('hidden');
+                $('#charge-error').text(response.error.message);
+                $form.find('button').prop('disabled', false);
+              }
+              else{
+                  var token = response.id;
+                  $form.append($('<input type="hidden" name="stripe_token" >').val(token));
+
+                  $form.get(0).submit();
+
+              }
+            }
+
+        }else{
+            $(".strip_data").hide();
+            $("span.payment_stripe").html('Proceed to checkout');            
+        }
+    
+    });
 </script>
