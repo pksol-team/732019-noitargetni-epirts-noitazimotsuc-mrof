@@ -1,0 +1,5 @@
+[08-Feb-2019 10:29:26 GMT] PHP Fatal error:  Out of memory (allocated 4194304) (tried to allocate 65536 bytes) in /home2/frankeey/public_html/vendor/composer/ClassLoader.php on line 444
+[08-Feb-2019 10:29:27 GMT] PHP Fatal error:  Out of memory (allocated 4194304) (tried to allocate 65536 bytes) in /home2/frankeey/public_html/vendor/composer/ClassLoader.php on line 444
+[08-Feb-2019 10:29:33 UTC] PHP Fatal error:  Out of memory (allocated 2097152) (tried to allocate 4096 bytes) in /home2/frankeey/public_html/vendor/composer/autoload_static.php on line 337
+[08-Feb-2019 10:29:40 GMT] PHP Fatal error:  Out of memory (allocated 4194304) (tried to allocate 65536 bytes) in /home2/frankeey/public_html/vendor/composer/ClassLoader.php on line 444
+[08-Feb-2019 10:29:44 UTC] PHP Fatal error:  Out of memory (allocated 2097152) (tried to allocate 4096 bytes) in /home2/frankeey/public_html/vendor/composer/autoload_static.php on line 337

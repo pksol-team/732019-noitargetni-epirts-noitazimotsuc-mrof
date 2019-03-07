@@ -1,0 +1,17 @@
+{
+  "paypal":{
+    "client_id":"ARCd6pVi-sRLGzmxoSalmUmRxHptXzAav7Bzls5WRpMNnmAV1UdfgKOZW1G8vMkSFn_xlBRYLmYb7F_e",
+    "secret":"EKjBef2VIgC9GyXQSlnYZmBZRucQf_MQjr3AvuwJ-sNz-3it9iwO9UZ0z_0rf3NsmkPbqrmVBNxYwB3V",
+    "endpoint":"https://api.paypal.com"
+  },
+  "withdrawals":
+    {
+      "paypal":{
+        "user_id":"info-facilitator_api1.masterclass.co.ke",
+        "password":"PDP83322KM6QHSGD",
+        "signature":"AFcWxV21C7fd0v3bYYYRCpSSRl31APszObavGd7wbjUPJNhfu48gf.Q2",
+        "app_id":"APP-80W284485P519543T",
+        "endpoint":"https://svcs.sandbox.paypal.com/"
+      }
+    }
+}
