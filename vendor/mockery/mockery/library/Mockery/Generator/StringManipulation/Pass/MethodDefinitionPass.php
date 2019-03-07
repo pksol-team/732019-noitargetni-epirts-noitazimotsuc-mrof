@@ -26,6 +26,7 @@ class MethodDefinitionPass implements Pass
             $methodDef .= $method->returnsReference() ? ' & ' : '';
             $methodDef .= $method->getName();
             $methodDef .= $this->renderParams($method, $config);
+            $methodDef .= $this->renderReturnType($method);
             $methodDef .= $this->renderMethodBody($method, $config);
 
             $code = $this->appendToClass($code, $methodDef);
@@ -66,6 +67,12 @@ class MethodDefinitionPass implements Pass
         return '(' . implode(', ', $methodParams) . ')';
     }
 
+    protected function renderReturnType(Method $method)
+    {
+        $type = $method->getReturnType();
+        return $type ? sprintf(': %s', $type) : '';
+    }
+
     protected function appendToClass($class, $code)
     {
         $lastBrace = strrpos($class, "}");
@@ -75,6 +82,7 @@ class MethodDefinitionPass implements Pass
 
     private function renderMethodBody($method, $config)
     {
+        /** @var \ReflectionMethod $method */
         $invoke = $method->isStatic() ? 'static::_mockery_handleStaticMethodCall' : '$this->_mockery_handleMethodCall';
         $body = <<<BODY
 {
@@ -95,6 +103,9 @@ BODY;
             for ($i = 0; $i < $paramCount; ++$i) {
                 $param = $params[$i];
                 if (strpos($param, '&') !== false) {
+                    if (($stripDefaultValue = strpos($param, '=')) !== false) {
+                        $param = trim(substr($param, 0, $stripDefaultValue));
+                    }
                     $body .= <<<BODY
 if (\$argc > $i) {
     \$argv[$i] = {$param};
@@ -104,6 +115,7 @@ BODY;
                 }
             }
         } else {
+            /** @var \ReflectionParameter[] $params */
             $params = array_values($method->getParameters());
             $paramCount = count($params);
             for ($i = 0; $i < $paramCount; ++$i) {
@@ -119,11 +131,25 @@ if (\$argc > $i) {
 BODY;
             }
         }
-        $body .= <<<BODY
+
+        $body .= $this->getReturnStatement($method, $invoke);
+
+        return $body;
+    }
+
+    private function getReturnStatement($method, $invoke)
+    {
+        if ($method->getReturnType() === 'void') {
+            return <<<BODY
+{$invoke}(__FUNCTION__, \$argv);
+}
+BODY;
+        }
+
+        return <<<BODY
 \$ret = {$invoke}(__FUNCTION__, \$argv);
 return \$ret;
 }
 BODY;
-        return $body;
     }
 }

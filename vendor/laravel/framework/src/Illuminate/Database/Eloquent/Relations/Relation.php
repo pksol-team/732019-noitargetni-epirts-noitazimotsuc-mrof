@@ -200,7 +200,6 @@ abstract class Relation
     {
         return array_unique(array_values(array_map(function ($value) use ($key) {
             return $key ? $value->getAttribute($key) : $value->getKey();
-
         }, $models)));
     }
 
@@ -348,5 +347,15 @@ abstract class Relation
         }
 
         return $result;
+    }
+
+    /**
+     * Force a clone of the underlying query builder when cloning.
+     *
+     * @return void
+     */
+    public function __clone()
+    {
+        $this->query = clone $this->query;
     }
 }

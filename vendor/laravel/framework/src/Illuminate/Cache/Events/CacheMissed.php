@@ -5,7 +5,7 @@ namespace Illuminate\Cache\Events;
 class CacheMissed
 {
     /**
-     * THe key that was missed.
+     * The key that was missed.
      *
      * @var string
      */
@@ -21,7 +21,7 @@ class CacheMissed
     /**
      * Create a new event instance.
      *
-     * @param  string  $event
+     * @param  string  $key
      * @param  array  $tags
      * @return void
      */

@@ -171,16 +171,17 @@ class ClientController extends Controller
                 $mapper->order_id = $order->id;
                 $mapper->save();
                 return redirect("order/$order->id");
-            }else{
-                 $order->save();
-                // $order->id = $new_id;
-                $mapper = new BidMapper();
-                $mapper->order_id = $order->id;
-                $mapper->save();
-                $this->emailer->sendOrderplacedEmail($order->user,$order);
-                $message = "Hello Admin<br/> A new order has been placed by ".$this->user->email." Order#$order->id.<br/>Please confirm";
-                $this->emailer->sendAdminNote($message);
             }
+            // else{
+            //      $order->save();
+            //     // $order->id = $new_id;
+            //     $mapper = new BidMapper();
+            //     $mapper->order_id = $order->id;
+            //     $mapper->save();
+            //     $this->emailer->sendOrderplacedEmail($order->user,$order);
+            //     $message = "Hello Admin<br/> A new order has been placed by ".$this->user->email." Order#$order->id.<br/>Please confirm";
+            //     $this->emailer->sendAdminNote($message);
+            // }
             if($request->pay_now == 1 && $request->payment_method == 'paypal'){
                 return $this->payDirect($order,$request);
             }

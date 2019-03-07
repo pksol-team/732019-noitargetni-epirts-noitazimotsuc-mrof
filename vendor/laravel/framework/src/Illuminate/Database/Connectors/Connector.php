@@ -6,6 +6,7 @@ use PDO;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Database\DetectsLostConnections;
+
 class Connector
 {
     use DetectsLostConnections;

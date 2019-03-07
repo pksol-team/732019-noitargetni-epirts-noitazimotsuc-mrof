@@ -192,10 +192,17 @@ class Expectation implements ExpectationInterface
      */
     protected function _setValues()
     {
+        $mockClass = get_class($this->_mock);
+        $container = $this->_mock->mockery_getContainer();
+        $mocks = $container->getMocks();
         foreach ($this->_setQueue as $name => &$values) {
             if (count($values) > 0) {
                 $value = array_shift($values);
-                $this->_mock->{$name} = $value;
+                foreach ($mocks as $mock) {
+                    if (is_a($mock, $mockClass)) {
+                        $mock->{$name} = $value;
+                    }
+                }
             }
         }
     }
@@ -216,6 +223,34 @@ class Expectation implements ExpectationInterface
             return array_shift($this->_returnQueue);
         } elseif (count($this->_returnQueue) > 0) {
             return current($this->_returnQueue);
+        }
+
+        $rm = $this->_mock->mockery_getMethod($this->_name);
+        if ($rm && version_compare(PHP_VERSION, '7.0.0-dev') >= 0 && $rm->hasReturnType()) {
+            $type = (string) $rm->getReturnType();
+            switch ($type) {
+                case '':       return;
+                case 'void':   return;
+                case 'string': return '';
+                case 'int':    return 0;
+                case 'float':  return 0.0;
+                case 'bool':   return false;
+                case 'array':  return array();
+
+                case 'callable':
+                case 'Closure':
+                    return function () {
+                    };
+
+                case 'Traversable':
+                case 'Generator':
+                    // Remove eval() when minimum version >=5.5
+                    $generator = eval('return function () { yield; };');
+                    return $generator();
+
+                default:
+                    return \Mockery::mock($type);
+            }
         }
     }
 
@@ -283,7 +318,8 @@ class Expectation implements ExpectationInterface
         if (empty($this->_expectedArgs) && !$this->_noArgsExpectation) {
             return true;
         }
-        if (count($args) !== count($this->_expectedArgs)) {
+        $expected = is_array($this->_expectedArgs) ? count($this->_expectedArgs) : 0;
+        if (count($args) !== $expected) {
             return false;
         }
         $argCount = count($args);
@@ -313,7 +349,8 @@ class Expectation implements ExpectationInterface
         }
         if (is_string($expected) && !is_array($actual) && !is_object($actual)) {
             # push/pop an error handler here to to make sure no error/exception thrown if $expected is not a regex
-            set_error_handler(function () {});
+            set_error_handler(function () {
+            });
             $result = preg_match($expected, (string) $actual);
             restore_error_handler();
 
