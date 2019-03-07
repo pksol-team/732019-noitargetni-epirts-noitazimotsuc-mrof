@@ -446,7 +446,7 @@ class ClientController extends Controller
            $order->update(); 
            // echo "Paid";
        } catch(\Exception $e){
-        // echo $e->getMessage();
+        echo $e->getMessage();
 
         $request->session()->flash('notice',['class'=>'error','message'=> $e->getMessage()]);
         return redirect('stud/unpaid');
