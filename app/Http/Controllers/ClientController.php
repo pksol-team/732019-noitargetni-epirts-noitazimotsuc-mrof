@@ -37,6 +37,8 @@ use App\BidMapper;
 use URL;
 use App\Website;
 use App\Article;
+use Stripe\Charge;
+use Stripe\Stripe;
 class ClientController extends Controller
 {
     //
@@ -127,6 +129,76 @@ class ClientController extends Controller
       $ip_api = "http://www.geoplugin.net/json.gp?ip=".$request->ip();
         $country = @json_decode(@file_get_contents($ip_api))->geoplugin_countryName;
         $method = $request->method();
+        // if($method=='POST'){
+        //     $repo = new OrderRepository();
+        //     $order = new Order();
+        //     $request->topic = $request->topic;
+        //     $order = $order->exchangeArray($request);
+        //     $web_repo = new WebsiteRepository();
+        //     $website = $web_repo->getWebsite();
+        //     if($website->designer == 1){
+        //             $request->session()->put('order',$order);
+        //             return redirect("stud/preview");
+        //     }
+        //     $order->discounted = $request->discounted;
+        //     $order->amount = $repo->calculateCost($order);
+        //     $add = $repo->getAdditionalFeaturesCost($request->feature_ids,$order->amount);
+        //     $order->amount+=$add;
+        //     $order->deadline = $repo->getDeadline($order);
+        //     $order->partial = round($request->partial,0);
+        //      if($request->paper_size){
+        //       $order->paper_size = $request->paper_size;  
+        //         }
+        //       if($request->feature_ids){
+        //           $order->add_features = @json_encode($request->feature_ids);
+        //      }   
+        //      if($request->preview){
+        //           $request->session()->put('order',$order);  
+        //           return redirect("stud/preview");
+        //      }
+        //     $order->user_id = $this->user->id;
+        //     $order = $repo->promote($order);
+        //     $order->save();
+        //     $fileRepo = new FileSaverRepository();
+        //     $fileRepo->uploadOrderFiles($order,$request);
+        //     $mailer = $this->emailer;
+        //     if(Auth::user()->role=='admin'){
+        //         if(isset($request->order_number)){
+        //             if(!Order::find($request->order_number)){
+        //                 // $order->id = $request->order_number;
+        //             }
+        //         }
+        //         $order->save();
+        //         $mapper = new BidMapper();
+        //         $mapper->order_id = $order->id;
+        //         $mapper->save();
+        //         return redirect("order/$order->id");
+        //     }
+        //     // else{
+        //     //      $order->save();
+        //     //     // $order->id = $new_id;
+        //     //     $mapper = new BidMapper();
+        //     //     $mapper->order_id = $order->id;
+        //     //     $mapper->save();
+        //     //     $this->emailer->sendOrderplacedEmail($order->user,$order);
+        //     //     $message = "Hello Admin<br/> A new order has been placed by ".$this->user->email." Order#$order->id.<br/>Please confirm";
+        //     //     $this->emailer->sendAdminNote($message);
+        //     // }
+        //     if($request->pay_now == 1 && $request->payment_method == 'paypal'){
+        //         return $this->payDirect($order,$request);
+        //     }
+        //     elseif($request->pay_now == 1 && $request->payment_method == 'payza'){
+        //         return redirect("stud/pay/$order->id?pay=payza");
+        //     }elseif($request->pay_now == 1){
+        //         return redirect("stud/pay/$order->id");
+        //     }else{
+        //         return redirect("/stud/order/$order->id");
+        //     }
+
+        //     $request->session()->set('order',$order);
+        //     $request->session()->flash('notice',['class'=>'success','message'=>'Order has been brought under preview!']);
+        //     return redirect("stud/preview");
+        // }
         if($method=='POST'){
             $repo = new OrderRepository();
             $order = new Order();
@@ -144,9 +216,9 @@ class ClientController extends Controller
             $order->amount+=$add;
             $order->deadline = $repo->getDeadline($order);
             $order->partial = round($request->partial,0);
-             if($request->paper_size){
+            if($request->paper_size){
               $order->paper_size = $request->paper_size;  
-                }
+            }
               if($request->feature_ids){
                   $order->add_features = @json_encode($request->feature_ids);
              }   
@@ -163,7 +235,6 @@ class ClientController extends Controller
             if(Auth::user()->role=='admin'){
                 if(isset($request->order_number)){
                     if(!Order::find($request->order_number)){
-                        // $order->id = $request->order_number;
                     }
                 }
                 $order->save();
@@ -174,7 +245,6 @@ class ClientController extends Controller
             }
             // else{
             //      $order->save();
-            //     // $order->id = $new_id;
             //     $mapper = new BidMapper();
             //     $mapper->order_id = $order->id;
             //     $mapper->save();
@@ -182,12 +252,25 @@ class ClientController extends Controller
             //     $message = "Hello Admin<br/> A new order has been placed by ".$this->user->email." Order#$order->id.<br/>Please confirm";
             //     $this->emailer->sendAdminNote($message);
             // }
-            if($request->pay_now == 1 && $request->payment_method == 'paypal'){
+            // if($request->pay_now == 1 && $request->payment_method == 'paypal'){
+                
+            //     return $this->payDirect($order,$request);
+            // }
+
+            if($request->pay_now == 1 && $request->payment_method_ == 'paypal'){
+                
                 return $this->payDirect($order,$request);
+            }
+            elseif($request->pay_now == 1 && $request->payment_method_ == 'stripe'){
+
+                // echo $request->payment_method_;
+                return $this->payStripe($order,$request);
+
             }
             elseif($request->pay_now == 1 && $request->payment_method == 'payza'){
                 return redirect("stud/pay/$order->id?pay=payza");
             }elseif($request->pay_now == 1){
+
                 return redirect("stud/pay/$order->id");
             }else{
                 return redirect("/stud/order/$order->id");
@@ -195,6 +278,7 @@ class ClientController extends Controller
 
             $request->session()->set('order',$order);
             $request->session()->flash('notice',['class'=>'success','message'=>'Order has been brought under preview!']);
+           
             return redirect("stud/preview");
         }
         $website = $this->webRepo->getWebsite();
@@ -343,6 +427,34 @@ class ClientController extends Controller
         $paypal = new PaypalRepository();
         $paypal->prepare($request,$order);
     }
+    
+    public function payStripe(Order $order, Request $request){
+
+        $this->order = $order;
+        $this->request = $request;
+        $paid = $order->getTotalPaid();        
+        $amount = $order->amount-$paid;        
+        Stripe::setApiKey('sk_test_doaAddzso5GZH5xoQ4YwDbQO');
+       try{
+           Charge::create(array(
+               'amount' => $amount*100,
+               'currency' => 'USD',
+               'source' => $request->stripe_token,
+               'description' => 'order#'.$order->id
+           ));           
+           $order->paid = 1;
+           $order->update(); 
+           // echo "Paid";
+       } catch(\Exception $e){
+        // echo $e->getMessage();
+
+        $request->session()->flash('notice',['class'=>'error','message'=> $e->getMessage()]);
+        return redirect('stud/unpaid');
+       }
+          return redirect("stud/order/$order->id")->with('notice',["class"=>"success","message"=>"Order payment succeeded"]);
+        
+    }
+
     public function payDirect(Order $order, Request $request){
         $paypal = new PaypalRepository();
         $paypal->prepare($request,$order);

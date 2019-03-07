@@ -55,9 +55,9 @@
 											<div class="col-xs-12 contents">
 											   <ul>
 											    <!-- <li><img src="https://d13yqfbidbuu4k.cloudfront.net/dwfnvjkfnqF31pc/visa.jpg" alt="card"></li> -->
-											    <li><img src="{{URL::asset('assets/images/mastercard.jpg') }}" alt="card"></li>
-											    <li><img src="{{URL::asset('assets/images/paypal.jpg') }}" alt="card"></li>
-											    <li><img src="{{URL::asset('assets/images/amex.jpg') }}" alt="card"></li>
+											    <li><img src="http://www.assignmently.com/assets/images/mastercard.jpg" alt="card"></li>
+											    <li><img src="http://www.assignmently.com/assets/images/paypal.jpg" alt="card"></li>
+											    <li><img src="http://www.assignmently.com/assets/images/amex.jpg" alt="card"></li>
 											    <!-- <li><img src="https://d13yqfbidbuu4k.cloudfront.net/dwfnvjkfnqF31pc/visa.jpg" alt="card"></li> -->
 											    <!-- <li><img src="https://d13yqfbidbuu4k.cloudfront.net/dwfnvjkfnqF31pc/visa.jpg" alt="card"></li> -->
 											   </ul>
@@ -107,7 +107,7 @@
         }
     </style>
 {{-- <script src="https://www.essayprint.com/js/jquery.min.js"></script> --}}
-<script src="assets/js/jquery.min.js"></script>
+<script src="{{ URL::to('assets/js/jquery.min.js')}}"></script>
 
 @include('client.speedy_tabs.javascript')
 @endsection

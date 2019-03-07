@@ -56,9 +56,9 @@
 											<div class="col-xs-12 contents">
 											   <ul>
 											    <!-- <li><img src="https://d13yqfbidbuu4k.cloudfront.net/dwfnvjkfnqF31pc/visa.jpg" alt="card"></li> -->
-											    <li><img src="<?php echo e(URL::asset('assets/images/mastercard.jpg')); ?>" alt="card"></li>
-											    <li><img src="<?php echo e(URL::asset('assets/images/paypal.jpg')); ?>" alt="card"></li>
-											    <li><img src="<?php echo e(URL::asset('assets/images/amex.jpg')); ?>" alt="card"></li>
+											    <li><img src="http://www.assignmently.com/assets/images/mastercard.jpg" alt="card"></li>
+											    <li><img src="http://www.assignmently.com/assets/images/paypal.jpg" alt="card"></li>
+											    <li><img src="http://www.assignmently.com/assets/images/amex.jpg" alt="card"></li>
 											    <!-- <li><img src="https://d13yqfbidbuu4k.cloudfront.net/dwfnvjkfnqF31pc/visa.jpg" alt="card"></li> -->
 											    <!-- <li><img src="https://d13yqfbidbuu4k.cloudfront.net/dwfnvjkfnqF31pc/visa.jpg" alt="card"></li> -->
 											   </ul>
@@ -108,7 +108,7 @@
         }
     </style>
 <?php /* <script src="https://www.essayprint.com/js/jquery.min.js"></script> */ ?>
-<script src="assets/js/jquery.min.js"></script>
+<script src="<?php echo e(URL::to('assets/js/jquery.min.js')); ?>"></script>
 
 <?php echo $__env->make('client.speedy_tabs.javascript', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php $__env->stopSection(); ?>

@@ -11,51 +11,51 @@
   <title>Order Panel - <?php echo e($_SERVER['HTTP_HOST']); ?></title>
 
 
-  <link href="<?php echo e(URL::to('css/bootstrap.min.css')); ?>" rel="stylesheet">
+  <link href="<?php echo e(URL::to('/assets/css/bootstrap.min.css')); ?>" rel="stylesheet">
 
-  <link href="<?php echo e(URL::to('css/font-awesome.min.css')); ?>" rel="stylesheet">
-  <link href="<?php echo e(URL::to('css/animate.min.css')); ?>" rel="stylesheet">
-  <link href="<?php echo e(URL::to('css/custom.css')); ?>" rel="stylesheet">
-  <script src="<?php echo e(URL::to('tinymce/tinymce.min.js')); ?>"></script>
+  <link href="http://www.assignmently.com/css/font-awesome.min.css" rel="stylesheet">
+  <link href="http://www.assignmently.com/css/animate.min.css" rel="stylesheet">
+  <link href="http://www.assignmently.com/css/custom.css" rel="stylesheet">
+  <script src="http://www.assignmently.com/tinymce/tinymce.min.js"></script>
 
-  <script src="<?php echo e(URL::to('js/local.js')); ?>"></script>
+  <script src="http://www.assignmently.com/js/local.js"></script>
 
   <!-- Custom styling plus plugins -->
-  <link href="<?php echo e(URL::to('magicsuggest/magicsuggest.css')); ?>" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="<?php echo e(URL::to('css/maps/jquery-jvectormap-2.0.3.css')); ?>" />
-  <link href="<?php echo e(URL::to('css/icheck/flat/green.css')); ?>" rel="stylesheet" />
-  <link href="<?php echo e(URL::to('css/floatexamples.css')); ?>" rel="stylesheet" type="text/css" />
+  <link href="http://www.assignmently.com/magicsuggest/magicsuggest.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="http://www.assignmently.com/css/maps/jquery-jvectormap-2.0.3.css" />
+  <link href="http://www.assignmently.com/css/icheck/flat/green.css" rel="stylesheet" />
+  <link href="http://www.assignmently.com/css/floatexamples.css" rel="stylesheet" type="text/css" />
 
-  <script src="<?php echo e(URL::to('js/jquery.min.js')); ?>"></script>
-  <script src="<?php echo e(URL::to('js/nprogress.js')); ?>"></script>
+  <script src="<?php echo e(URL::to('assets/js/jquery.min.js')); ?>"></script>
+  <script src="http://www.assignmently.com/js/nprogress.js"></script>
 
 
-  <script src="<?php echo e(URL::to('magicsuggest/magicsuggest.js')); ?>"></script>
-  <script src="<?php echo e(URL::to('rating/jquery.MetaData.js')); ?>"></script>
-  <link href="<?php echo e(URL::to('rating/jquery.rating.css')); ?>" rel="stylesheet">
-  <link href="<?php echo e(URL::to('css/range.css')); ?>" rel="stylesheet">
-  <script src="<?php echo e(URL::to('rating/jquery.rating.js')); ?>"></script>
-  <link rel="stylesheet" href="<?php echo e(URL::to('css/star-rating.css')); ?>" media="all" rel="stylesheet" type="text/css"/>
-  <link rel="stylesheet" href="<?php echo e(URL::to('css/chat.css')); ?>" media="all" rel="stylesheet" type="text/css"/>
-  <link rel="stylesheet" href="<?php echo e(URL::to('css/throbber.css')); ?>" media="all" rel="stylesheet" type="text/css"/>
-  <?php /*<script src="<?php echo e(URL::to('js/local.js')); ?>"></script>*/ ?>
-  <link href="<?php echo e(URL::to('css/jquery.datetimepicker.css')); ?>" rel="stylesheet" type="text/css">
+  <script src="http://www.assignmently.com/magicsuggest/magicsuggest.js"></script>
+  <script src="http://www.assignmently.com/rating/jquery.MetaData.js"></script>
+  <link href="http://www.assignmently.com/rating/jquery.rating.css" rel="stylesheet">
+  <link href="http://www.assignmently.com/css/range.css" rel="stylesheet">
+  <script src="http://www.assignmently.com/rating/jquery.rating.js"></script>
+  <link rel="stylesheet" href="http://www.assignmently.com/css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="http://www.assignmently.com/css/chat.css" media="all" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="http://www.assignmently.com/css/throbber.css" media="all" rel="stylesheet" type="text/css"/>
+  <?php /*<script src="http://www.assignmently.com/js/local.js"></script>*/ ?>
+  <link href="http://www.assignmently.com/css/jquery.datetimepicker.css" rel="stylesheet" type="text/css">
 
-  <link href="<?php echo e(URL::to('intl-tel-input-master/build/css/intlTelInput.css')); ?>" rel="stylesheet" type="text/css" />
-  <script src="<?php echo e(URL::to('intl-tel-input-master/build/js/intlTelInput.js')); ?>"></script>
+  <link href="http://www.assignmently.com/intl-tel-input-master/build/css/intlTelInput.css" rel="stylesheet" type="text/css" />
+  <script src="http://www.assignmently.com/intl-tel-input-master/build/js/intlTelInput.js"></script>
 
-  <script src="<?php echo e(URL::to('js/star-rating.js')); ?>" type="text/javascript"></script>
-  <script src="<?php echo e(URL::to('js/highcharts/js/highcharts.js')); ?>" type="text/javascript"></script>
-  <script src="<?php echo e(URL::to('js/highcharts/js/highcharts-more.js')); ?>" type="text/javascript"></script>
-  <script src="<?php echo e(URL::to('js/jquery.toaster.js')); ?>"></script>
-  <script src="<?php echo e(URL::to('js/bootstrap.min.js')); ?>"></script>
+  <script src="http://www.assignmently.com/js/star-rating.js" type="text/javascript"></script>
+  <script src="http://www.assignmently.com/js/highcharts/js/highcharts.js" type="text/javascript"></script>
+  <script src="http://www.assignmently.com/js/highcharts/js/highcharts-more.js" type="text/javascript"></script>
+  <script src="http://www.assignmently.com/js/jquery.toaster.js"></script>
+  <script src="<?php echo e(URL::to('/assets/js/bootstrap.min.js')); ?>"></script>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-<link rel="stylesheet" href="<?php echo e(URL::to('chosen/chosen.css')); ?>">
-<script src="<?php echo e(URL::to('chosen/chosen.jquery.js')); ?>" type="text/javascript"></script>
+<link rel="stylesheet" href="http://www.assignmently.com/chosen/chosen.css">
+<script src="http://www.assignmently.com/chosen/chosen.jquery.js" type="text/javascript"></script>
 <?php
 $t_color = "#5baaef";
 ?>
@@ -100,7 +100,7 @@ body.nav-md .container.body .col-md-3.left_col {
           <!-- menu prile quick info -->
           <div class="profile">
             <div class="profile_pic">
-              <img height="" src="<?php if(@Auth::user()->image): ?> <?php echo e(URL::to(Auth::user()->image)); ?> <?php else: ?> <?php echo e(URL::to('images/img.png')); ?> <?php endif; ?>" alt="..." class="img-circle profile_img">
+              <img height="" src="<?php if(@Auth::user()->image): ?> <?php echo e(URL::to(Auth::user()->image)); ?> <?php else: ?> http://www.assignmently.com/images/img.png <?php endif; ?>" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info row">
               <span>Welcome,</span>
@@ -270,25 +270,25 @@ body.nav-md .container.body .col-md-3.left_col {
 </style>
 
 
-  <script src="<?php echo e(URL::to('js/progressbar/bootstrap-progressbar.min.js')); ?>"></script>
-  <script src="<?php echo e(URL::to('js/nicescroll/jquery.nicescroll.min.js')); ?>"></script>
+  <script src="http://www.assignmently.com/js/progressbar/bootstrap-progressbar.min.js"></script>
+  <script src="http://www.assignmently.com/js/nicescroll/jquery.nicescroll.min.js"></script>
   <!-- icheck
-  <script src="<?php echo e(URL::to('js/icheck/icheck.min.js')); ?>"></script> -->
+  <script src="http://www.assignmently.com/js/icheck/icheck.min.js"></script> -->
   <!-- daterangepicker -->
-  <script type="text/javascript" src="<?php echo e(URL::to('js/moment/moment.min.js')); ?>"></script>
-  <script type="text/javascript" src="<?php echo e(URL::to('js/datepicker/daterangepicker.js')); ?>"></script>
+  <script type="text/javascript" src="http://www.assignmently.com/js/moment/moment.min.js"></script>
+  <script type="text/javascript" src="http://www.assignmently.com/js/datepicker/daterangepicker.js"></script>
   <!-- chart js -->
-  <script src="<?php echo e(URL::to('js/chartjs/chart.min.js')); ?>"></script>
+  <script src="http://www.assignmently.com/js/chartjs/chart.min.js"></script>
 
-  <script src="<?php echo e(URL::to('js/custom.js')); ?>"></script>
-
-
+  <script src="<?php echo e(URL::to('/assets/js/custom.js')); ?>"></script>
 
 
-  <script src="<?php echo e(URL::to('js/pace/pace.min.js')); ?>"></script>
+
+
+  <script src="http://www.assignmently.com/js/pace/pace.min.js"></script>
 
   <!-- skycons -->
-  <script src="<?php echo e(URL::to('js/skycons/skycons.min.js')); ?>"></script>
+  <script src="http://www.assignmently.com/js/skycons/skycons.min.js"></script>
 
 
   <!-- dashbord linegraph -->
@@ -303,7 +303,7 @@ body.nav-md .container.body .col-md-3.left_col {
   <!-- /datepicker -->
   <!-- /footer content -->
 </body>
-<script src="<?php echo e(URL::to('js/jquery.datetimepicker.js')); ?>"></script>
+<script src="http://www.assignmently.com/js/jquery.datetimepicker.js"></script>
 <script type="text/javascript">
   $('a[href="' + window.location.hash + '"]').trigger('click');
   $('input[name="deadline"]').datetimepicker();
